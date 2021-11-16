@@ -38,7 +38,7 @@ function formatDay(timestamp) {
 }
 
 function displayForecast(response) {
-  let forecast = response.data.daily;
+  forecast = response.data.daily;
 
   let forecastElement = document.querySelector("#forecast");
 
@@ -129,23 +129,87 @@ function handleSubmit(event) {
 function showFahrenheitTemperature(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#temperature");
-
+  let tempMaxElements = document.querySelectorAll(
+    ".weather-forecast-temperature-max"
+  );
+  let tempMinElements = document.querySelectorAll(
+    ".weather-forecast-temperature-min"
+  );
   celsiusLink.classList.remove("active");
   fahrenheitLink.classList.add("active");
   let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
   temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+
+  let day0MaxF = (forecast[0].temp.max * 9) / 5 + 32;
+  let day0MinF = (forecast[0].temp.min * 9) / 5 + 32;
+  let day1MaxF = (forecast[1].temp.max * 9) / 5 + 32;
+  let day1MinF = (forecast[1].temp.min * 9) / 5 + 32;
+  let day2MaxF = (forecast[2].temp.max * 9) / 5 + 32;
+  let day2MinF = (forecast[2].temp.min * 9) / 5 + 32;
+  let day3MaxF = (forecast[3].temp.max * 9) / 5 + 32;
+  let day3MinF = (forecast[3].temp.min * 9) / 5 + 32;
+  let day4MaxF = (forecast[4].temp.max * 9) / 5 + 32;
+  let day4MinF = (forecast[4].temp.min * 9) / 5 + 32;
+  let day5MaxF = (forecast[5].temp.max * 9) / 5 + 32;
+  let day5MinF = (forecast[5].temp.min * 9) / 5 + 32;
+
+  tempMaxElements[0].innerHTML = `${Math.round(day0MaxF)}°`;
+  tempMinElements[0].innerHTML = `${Math.round(day0MinF)}°`;
+  tempMaxElements[1].innerHTML = `${Math.round(day1MaxF)}°`;
+  tempMinElements[1].innerHTML = `${Math.round(day1MinF)}°`;
+  tempMaxElements[2].innerHTML = `${Math.round(day2MaxF)}°`;
+  tempMinElements[2].innerHTML = `${Math.round(day2MinF)}°`;
+  tempMaxElements[3].innerHTML = `${Math.round(day3MaxF)}°`;
+  tempMinElements[3].innerHTML = `${Math.round(day3MinF)}°`;
+  tempMaxElements[4].innerHTML = `${Math.round(day4MaxF)}°`;
+  tempMinElements[4].innerHTML = `${Math.round(day4MinF)}°`;
+  tempMaxElements[5].innerHTML = `${Math.round(day5MaxF)}°`;
+  tempMinElements[5].innerHTML = `${Math.round(day5MinF)}°`;
 }
 
 function showCelsiusTemperature(event) {
   event.preventDefault();
 
   celsiusLink.classList.add("active");
-  fahrenheitLink.classList.aremove("active");
+  fahrenheitLink.classList.remove("active");
   let temperatureElement = document.querySelector("#temperature");
+  let tempMaxElements = document.querySelectorAll(
+    ".weather-forecast-temperature-max"
+  );
+  let tempMinElements = document.querySelectorAll(
+    ".weather-forecast-temperature-min"
+  );
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
+
+  let day0MaxF = forecast[0].temp.max;
+  let day0MinF = forecast[0].temp.min;
+  let day1MaxF = forecast[1].temp.max;
+  let day1MinF = forecast[1].temp.min;
+  let day2MaxF = forecast[2].temp.max;
+  let day2MinF = forecast[2].temp.min;
+  let day3MaxF = forecast[3].temp.max;
+  let day3MinF = forecast[3].temp.min;
+  let day4MaxF = forecast[4].temp.max;
+  let day4MinF = forecast[4].temp.min;
+  let day5MaxF = forecast[5].temp.max;
+  let day5MinF = forecast[5].temp.min;
+
+  tempMaxElements[0].innerHTML = `${Math.round(day0MaxF)}°`;
+  tempMinElements[0].innerHTML = `${Math.round(day0MinF)}°`;
+  tempMaxElements[1].innerHTML = `${Math.round(day1MaxF)}°`;
+  tempMinElements[1].innerHTML = `${Math.round(day1MinF)}°`;
+  tempMaxElements[2].innerHTML = `${Math.round(day2MaxF)}°`;
+  tempMinElements[2].innerHTML = `${Math.round(day2MinF)}°`;
+  tempMaxElements[3].innerHTML = `${Math.round(day3MaxF)}°`;
+  tempMinElements[3].innerHTML = `${Math.round(day3MinF)}°`;
+  tempMaxElements[4].innerHTML = `${Math.round(day4MaxF)}°`;
+  tempMinElements[4].innerHTML = `${Math.round(day4MinF)}°`;
+  tempMaxElements[5].innerHTML = `${Math.round(day5MaxF)}°`;
+  tempMinElements[5].innerHTML = `${Math.round(day5MinF)}°`;
 }
 
 let celsiusTemperature = null;
+let forecast = null;
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
